@@ -51,7 +51,7 @@ class Project(QtCore.QObject):
 
         #Create project folder
         os.mkdir(self._project_folder)
-        os.mkdir(self._record_folder)
+        os.mkdir(self.record_folder)
         with open(self.metadata_path, 'w'):
             pass
         
@@ -78,7 +78,7 @@ class Project(QtCore.QObject):
         for sentence in sentences:
             w_c += len(sentence.split(' '))
             f.write(sentence + "\n")
-        
+        f.close()
         # Update stats
         self._n_sentence += len(sentences)            
         self._total_word += w_c

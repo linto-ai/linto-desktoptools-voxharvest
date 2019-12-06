@@ -19,9 +19,11 @@ class Text_Widget(QtWidgets.QWidget):
         self._project.project_updated.connect(self._on_project_updated)
 
     def _load_text_stats(self):
+        if self._project._n_sentence == 0:
+            return
         self.ui.sentence_count_SP.setValue(self._project._n_sentence)
         self.ui.word_count_SP.setValue(self._project._total_word)
-
+        
         stats = self._project.words_stats
         min_w = min([v for v in stats.keys()])
         max_w = max([v for v in stats.keys()])

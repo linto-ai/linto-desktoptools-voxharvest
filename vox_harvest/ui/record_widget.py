@@ -53,6 +53,9 @@ class Record_Widget(QtWidgets.QWidget):
         
         
     def _next_sentence(self):
+        if len(self.sentences) == 0:
+            self.setEnabled(False)
+            return
         self.index, self.current_sentence = self.sentences.pop(0)
         self.ui.sentence_TE.setText(self.current_sentence)
         self.ui.sentence_index_SP.setValue(self.index)
@@ -76,7 +79,9 @@ class Record_Widget(QtWidgets.QWidget):
         self.sentences.insert(0, [self.index, to_next])
 
     def _on_remove_clicked(self):
-        self._next_sentence()
+        self._update_text_bank()
+        self.project._restat()
+        self.project.project_updated.emit()
 
     def _on_shortcut_record(self):
         if self._recording:

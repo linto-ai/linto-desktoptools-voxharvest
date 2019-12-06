@@ -19,6 +19,7 @@ class Resume_Widget(QtWidgets.QWidget):
         #CONNECT
         self.ui.close_PB.clicked.connect(self._on_close_clicked)
         self.ui.add_text_PB.clicked.connect(self.switch_to_text.emit)
+        self.ui.record_PB.clicked.connect(self.switch_to_record.emit)
         
 
     def _update_values(self):
@@ -30,11 +31,11 @@ class Resume_Widget(QtWidgets.QWidget):
         #Texts
         self.ui.sentences_read_SP.setValue(self._project._n_record)
         self.ui.sentences_total_SP_2.setValue(self._project._n_sentence)
-        self.ui.percent_label.setText("({:0>2.2%})".format(self._project._n_record / self._project._n_sentence))
+        self.ui.percent_label.setText("({:0>2.2%})".format(self._project._n_record / max(self._project._n_sentence, 1)))
 
         self.ui.words_read_SP.setValue(self._project._n_words)
         self.ui.words_total_SP.setValue(self._project._total_word)
-        self.ui.percent_word_label.setText("({:0>2.2%})".format(self._project._n_words / self._project._total_word))
+        self.ui.percent_word_label.setText("({:0>2.2%})".format(self._project._n_words / max(self._project._total_word, 1)))
         
         #Audio
         self.ui.n_samples_SP.setValue(self._project._n_record)
