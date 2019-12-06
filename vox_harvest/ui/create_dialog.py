@@ -29,7 +29,7 @@ class Create_Dialog(QtWidgets.QDialog):
                                      self.ui.speaker_LE.text(),
                                      self.selected_language,
                                      self.ui.prefix_LE.text(),
-                                     self.ui.sample_rate_CoB.currentText(),
+                                     self.selected_sample_rate,
                                      self.ui.encoding_CoB.currentText())
         self.project_created.emit(self._project)
         self.close()
@@ -64,3 +64,7 @@ class Create_Dialog(QtWidgets.QDialog):
     @property
     def selected_language(self) -> str:
         return self.ui.language_CB.currentText()
+
+    @property
+    def selected_sample_rate(self) -> int:
+        return int(self.ui.sample_rate_CoB.currentText().split(' ')[0])

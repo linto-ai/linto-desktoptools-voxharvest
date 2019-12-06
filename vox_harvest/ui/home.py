@@ -23,15 +23,15 @@ class Home(QtWidgets.QWidget):
 
         self._last_project_path = None
 
+        linagora_icon = QtGui.QPixmap(os.path.join(DIR_PATH, "ui/icons/linagora-labs.png"))
+        self.ui.banner_LB.setPixmap(linagora_icon)
+
         self._load_user_prefs()
         
         # CONNECT
         self.ui.open_PB.clicked.connect(self._on_open_clicked)
         self.ui.create_PB.clicked.connect(self._on_create_clicked)
         self.ui.open_last_PB.clicked.connect(self._on_open_last)
-
-    def _close_project(self):
-        pass
 
     def _on_open_clicked(self):
         res = QtWidgets.QFileDialog.getOpenFileName(self, "Select a project file", "", "Project file (*.proj)")[0]
@@ -80,7 +80,8 @@ class Home(QtWidgets.QWidget):
             prefs = json.load(f)['last_project']
         
         if len(prefs['project_name']) > 1:
-            self.ui.last_project_label.setText(prefs['project_name'])
+            self.ui.open_last_PB.setText("Open Last project : {}".format(prefs['project_name']))
+            self.ui.open_last_PB.setToolTip(prefs['project_location'])
             self._last_project_path = prefs['project_location']
         else:
             self.ui.open_last_PB.hide()

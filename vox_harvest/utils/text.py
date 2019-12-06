@@ -8,17 +8,18 @@ NUMBER_RE = re.compile(r"([0-9]+)")
 
 FR_ABRV = [(re.compile(x[0], re.IGNORECASE), x[1]) for x in[
     (r"M\. ", "Monsieur "),
-    (r"Mme", "Madame"),
+    (r" Mme ", " Madame "),
     (r"Mlle", "Mademoiselle"),
     (r"MM\.", "Messieur"),
     (r"Mgr", "Monseigneur"),
-    (r"Mmes", "Mesdames"),
+    (r" Mmes ", " Mesdames "),
     (r"N°", "numéro "),
     (r"Bat\.", "batiment"),
     (r"Ex\. ", "exemple "),
     (r"Cpt\.", "Capitaine"),
     (r"Sgt\.", "Sergent"),
-    (r"jr\.", "junior")]]
+    (r"jr\.", "junior"),
+    (r"&", " et ")]]
 
 FR_ORDINAL = re.compile(r"([0-9]+)[e|re|de]", re.IGNORECASE)
 

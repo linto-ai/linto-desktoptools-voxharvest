@@ -5,16 +5,21 @@ from ui.forms.resume import Ui_Form
 
 class Resume_Widget(QtWidgets.QWidget):
     project_closed = QtCore.pyqtSignal(name="project_closed")
+    switch_to_text = QtCore.pyqtSignal(name="switch_to_text")
+    switch_to_record = QtCore.pyqtSignal(name="switch_to_record")
     def __init__(self, project: Project):
         super().__init__()
         self.ui = Ui_Form()
         self.ui.setupUi(self)
 
         self._project = project
+        self._project.project_updated.connect(self._update_values)
         self._update_values()
         
         #CONNECT
         self.ui.close_PB.clicked.connect(self._on_close_clicked)
+        self.ui.add_text_PB.clicked.connect(self.switch_to_text.emit)
+        
 
     def _update_values(self):
         #Project
@@ -25,9 +30,11 @@ class Resume_Widget(QtWidgets.QWidget):
         #Texts
         self.ui.sentences_read_SP.setValue(self._project._n_record)
         self.ui.sentences_total_SP_2.setValue(self._project._n_sentence)
+        self.ui.percent_label.setText("({:0>2.2%})".format(self._project._n_record / self._project._n_sentence))
 
         self.ui.words_read_SP.setValue(self._project._n_words)
         self.ui.words_total_SP.setValue(self._project._total_word)
+        self.ui.percent_word_label.setText("({:0>2.2%})".format(self._project._n_words / self._project._total_word))
         
         #Audio
         self.ui.n_samples_SP.setValue(self._project._n_record)
