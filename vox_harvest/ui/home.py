@@ -85,7 +85,6 @@ class Home(QtWidgets.QWidget):
             self._last_project_path = prefs['project_location']
         else:
             self.ui.open_last_PB.hide()
-            self.ui.last_project_label.hide()
 
     def _update_user_prefs(self, project: Project):
         pref_path = os.path.join(DIR_PATH, ".user_preferences.json")
