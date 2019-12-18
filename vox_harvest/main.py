@@ -3,12 +3,11 @@ import sys
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from ui.mainwindow import MainWindow
-
+from ui import mainwindow
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    mainWindow = MainWindow()
+    mainWindow = mainwindow.MainWindow()
     mainWindow._open_home_panel()
     mainWindow.show()
     sys.exit(app.exec_())

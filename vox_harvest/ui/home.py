@@ -23,7 +23,7 @@ class Home(QtWidgets.QWidget):
 
         self._last_project_path = None
 
-        linagora_icon = QtGui.QPixmap(os.path.join(DIR_PATH, "ui/icons/linagora-labs.png"))
+        linagora_icon = QtGui.QPixmap(os.path.join(DIR_PATH, "icons/linagora-labs.png"))
         self.ui.banner_LB.setPixmap(linagora_icon)
 
         self._load_user_prefs()

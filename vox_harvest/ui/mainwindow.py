@@ -72,7 +72,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def _load_icons(self):
         for button, icon_path in zip([self.ui.home_PB, self.ui.text_PB, self.ui.record_PB, self.ui.setting_PB],
                                      ["home_icon.png", "text_icon.png", "record_icon.png", "setting_icon.png"]):
-            icon = QtGui.QPixmap(os.path.join(DIR_PATH, "ui/icons/", icon_path))
+            icon = QtGui.QPixmap(os.path.join(DIR_PATH, "icons/", icon_path))
 
             button.setIcon(QtGui.QIcon(icon))
             button.setIconSize(QtCore.QSize(90,90))
